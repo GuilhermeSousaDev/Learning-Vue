@@ -1,0 +1,28 @@
+<meta charset="UTF-8">
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <count></count>
+</div>
+
+<script>
+    Vue.component('count', {
+        template: `
+        <div>   
+            <span>{{ count }}</span>
+            <button @click="count++">+</button>
+            <button @click="count--">-</button>
+        </div>`,
+        data () {
+            return {
+                count: 0
+            }
+        }
+    });
+
+    new Vue({
+        el: "#app",
+        
+    });
+</script>
