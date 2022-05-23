@@ -1,0 +1,32 @@
+<meta charset="UTF-8">
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <template v-if="isAuth">
+        <p>Usuário Logado: {{ name }}</p>
+        <p>Perfil: Admin</p>
+    </template>
+    <p v-else-if="anonymous">Usuário anonymous</p>
+    <p v-else>Nenhum Usuário Logado</p>
+    <button @click="isAuth = !isAuth">
+        {{ isAuth ? 'Sair' : 'Entrar' }}
+    </button>
+    <button id="btn" @click="scrollTop()">Subir</button>
+    <input type="checkbox" v-model="anonymous">
+    <hr>
+</div>
+<footer v-show="isAuth">
+    Desenvolvido
+</footer>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            name: 'Maria',
+            isAuth: false,
+            anonymous: false,
+        },
+    });
+</script>

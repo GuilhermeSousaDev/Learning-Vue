@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="shortcut icon" href="imagens/owl.ico.ico">
+<script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
+<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+<title>LinkCerto - Formulário</title>
+<body>
+    <div class="navbar">
+        <h1> <img src="imagens/link (1).png" alt="Link Logo" width="30px"> Link Certo</h1> 
+           <div class="navItems">
+              <a href="index.html"> <i class='bx bxs-home' ></i> Inicio</a>   
+              <a href="https://www.instagram.com/link.certo/" target="_blank" rel="noopener"> <i class='bx bxl-instagram'></i> Instagram</a>   
+              <a href="https://github.com/GuilhermeSousaDev" target="_blank" rel="noopener"><i class='bx bxl-github'></i> GitHub</a>
+              <a href="contact.html"><i class='bx bx-envelope' ></i> Contato</a>
+          </div>           
+      </div>
+
+<form onsubmit="preventSendForm(e)" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+<h2 class="w3-center">Mande uma mensagem</h2>
+ 
+<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class='bx bxs-user'></i></div>
+    <div class="w3-rest">
+      <input class="w3-input w3-border" name="nome" type="text" placeholder="Nome">
+    </div>
+</div>
+
+<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class='bx bx-envelope'></i></div>
+    <div class="w3-rest">
+      <input class="w3-input w3-border" name="email" type="text" placeholder="Email">
+    </div>
+</div>
+
+<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class='bx bx-phone'></i></div>
+    <div class="w3-rest">
+      <input class="w3-input w3-border" name="telefone" type="text" placeholder="Telefone">
+    </div>
+</div>
+
+<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class='bx bx-edit'></i></div>
+    <div class="w3-rest">
+      <input class="w3-input w3-border" name="message" type="text" placeholder="Mensagem">
+    </div>
+</div>
+
+<p class="w3-center">
+<button class="w3-button w3-section w3-blue w3-ripple">Enviar</button>
+<p id="hour"></p>
+<p id="date"></p>
+</p>
+</form>
+<button class="w3-button w3-section w3-blue w3-ripple" onclick="showDate()">Veja a Data e Hora</button>
+
+<script>
+    function showDate() {
+        const p = document.querySelector('#date')
+        const d = document.querySelector('#hour')
+        const date = new Date()
+        const year = date.getFullYear()
+        const month = date.getMonth()
+        const day = date.getDay()
+        const hour = date.getHours()
+        p.innerHTML = `Ano ${year} Mês ${month} Dia ${day} e horário ${hour} horas`
+    }
+</script>
+</body>
+</html> 

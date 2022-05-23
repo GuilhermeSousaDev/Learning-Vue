@@ -1,0 +1,39 @@
+<meta charset="UTF-8">
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app1">
+    {{ title1 }}
+    <button @click="alternate()">Alternar</button>
+</div>
+
+<div id="app2">
+    {{ title2 }}
+    <button @click="alternate()">Alternar</button>
+</div>
+
+<script>
+    new Vue({
+        el: '#app1',
+        data: {
+            title1: 'Teste1', 
+        },
+        methods: {
+            alternate() {
+                this.title1 += '!';
+            }
+        }
+    });
+
+    new Vue({
+        el: '#app2',
+        data: {
+            title2: 'Teste2', 
+        },
+        methods: {
+            alternate() {
+                this.title2 += '!';
+            }
+        }
+    });
+</script>

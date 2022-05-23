@@ -1,0 +1,54 @@
+.players {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0px 0px 2.5px black;
+    padding: 0.5rem;
+}
+
+.progressArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 2.5px black;
+    padding: 0.5rem;
+}
+
+.data {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0px 0px 2.5px black;
+    padding: 0.5rem;
+}
+
+.monsterMsg {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 70%;
+    background-color: red;
+    color: white;
+}
+
+.playerMsg {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 70%;
+    background-color: blue;
+    color: white;
+}
+
+button {
+    margin-left: 20px;
+}

@@ -1,0 +1,56 @@
+<meta charset="UTF-8">
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<div id="app">
+    <div class="">
+        <main class="players">
+            <div class="player">
+                <span style="text-align: center">{{ endGame }}</span>
+                <div class="progressArea">
+                    <h3 :style="progressBarPlayerStyle">Jogador</h3>
+                    <progress :value="playerValue" :max="max"></progress>
+                    {{ playerValue }}%
+                </div>
+            </div>
+            <div class="player">
+                <div class="progressArea">
+                    <h3 :style="progressBarMonsterStyle">Monstro</h3>
+                    <progress
+                        :value="monsterValue" 
+                        max="100"
+                    ></progress>
+                    {{ monsterValue }}%
+                </div>
+            </div>
+        </main>
+        <br>
+        <div class="game">
+            <button v-if="!started" @click="reloadGame()">Iniciar Jogo</button>
+            <template v-else>
+                <button @click="playerAttack()">Ataque</button>
+                <button @click="specialAttack()">Ataque Especial</button>
+                <button @click="healthPlayer()">Curar</button>
+                <button @click="reloadGame()">Desistir</button>
+                <br>
+                <button v-if="endGame" @click="reloadGame()">Iniciar Novo Jogo</button>
+            </template>
+        </div>
+        <br>
+        <div class="data">
+            <div>
+                <span v-for="msg of monster" class="monsterMsg">{{ msg }}</span>
+            </div>
+
+            <div>
+                <span v-for="msg of player" class="playerMsg">{{ msg }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>

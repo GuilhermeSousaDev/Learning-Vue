@@ -1,0 +1,33 @@
+<meta charset="UTF-8">
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+</div>
+
+<script>
+    const vm = new Vue({
+        template: ` 
+            <div>
+                <h1>{{ aula }}</h1>
+                <h2>{{ model }}</h2>
+                <button @click="alternateAula()">Alternate Aula</button>
+                <button @click="alternateModel()">Alternate Model</button>    
+            </div>
+        `,
+        data: {
+            aula: 'Aula: Montando instância Vue',
+            model: 'Model: Instância Vue',
+        },
+        methods: {
+            alternateAula () {
+                this.aula += '#';
+            },
+            alternateModel () {
+                this.model += '#';              
+            }
+        },
+    });
+
+    vm.$mount('#app');
+</script>

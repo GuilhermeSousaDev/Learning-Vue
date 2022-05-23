@@ -1,0 +1,52 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="challenge">
+    <h2>#01</h2>
+    <div>
+        <button @click="alternate()">Alternate</button>
+        <p v-if="show">P with v-if</p>
+        <p v-show="show">P with v-show</p>
+    </div>
+    <hr>
+    <h2>#02</h2>
+    <ul>
+        <li v-for="(time, i) of times">{{ i + 1 }}-{{ time }}</li>
+    </ul>
+    <hr>
+    <h2>#03</h2>
+    <ul>
+        <li v-for="(info, key, i) in movie">{{ key }}-{{ info }}-{{ i + 1 }}</li>
+    </ul>
+    <hr>
+    <h2>#04</h2>
+    <ul>
+        <li>{{ student.id }}</li>
+        <li>{{ student.name }}</li>
+        <span v-for="(note, i) in student.notes">Note {{ i + 1 }}: {{ note }} - </span>
+    </ul>
+</div>
+
+<script>
+    new Vue({
+        el: '#challenge',
+        data: {
+            show: false,
+            times: ['Vasco', 'Flamengo', 'Botafogo', 'Cruzeiro', 'Grêmio'],
+            movie: {
+                Title: 'Breaking Bad',
+                Author: 'Vince Gilligan',
+                Seasons: 5,
+            },
+            student: {
+                id: 10,
+                name: 'Maria',
+                notes: [7.67, 8.33, 6.98, 9.21],
+            },
+        },
+        methods: {
+            alternate () {
+                this.show = !this.show;
+            }
+        }
+    });
+</script>

@@ -1,0 +1,39 @@
+<meta charset="UTF-8">
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <comp></comp>
+    <comp></comp>
+    <comp></comp>
+</div>
+
+<script>
+    Vue.component('comp', {
+        el: '#app',
+        template: ` 
+            <div>
+                <h1>{{ aula }}</h1>
+                <h2>{{ model }}</h2>
+                <button @click="alternateAula()">Alternate Aula</button>
+                <button @click="alternateModel()">Alternate Model</button>    
+            </div>
+        `,
+        data: function () {
+            return {
+                aula: 'Aula: Montando instância Vue',
+                model: 'Model: Instância Vue',
+            };
+        },
+        methods: {
+            alternateAula () {
+                this.aula += '#';
+            },
+            alternateModel () {
+                this.model += '#';              
+            }
+        },
+    });
+
+    const vm = new Vue({ el: '#app' });
+</script>

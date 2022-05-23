@@ -1,0 +1,37 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{ value2 }}</p>
+    <button @click="increment">Aumentar</button>
+    <button @click="value2++">Aumentar2</button>
+    <p>{{ value }}</p>
+    <p>{{ result }}</p>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            value: 0,
+            value2: 0,
+        },
+        watch: {
+            value () {
+                setTimeout(() => {
+                    this.value = 0;
+                }, 5000);
+            }
+        },
+        computed: {
+            result () {
+                return this.value2 === 37 ? "Valor Igual": "Valor Diferente"
+            }
+        },
+        methods: {
+            increment() {
+                this.result++;
+                this.value++;
+            }
+        }
+    });
+</script>
