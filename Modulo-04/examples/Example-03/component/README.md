@@ -1,4 +1,4 @@
-# component-intro
+# component
 
 ## Project setup
 ```
