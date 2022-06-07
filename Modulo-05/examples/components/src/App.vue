@@ -3,8 +3,13 @@ import Usuario from './components/Usuario.vue'
 </script>
 
 <template>
+  <p>Componente Pai</p>
+  {{ name }}
   <button @click="changeName()">Change</button>
-  <Usuario />
+  <Usuario 
+    :name="name" 
+    @changeName="name = $event"  
+  />
 </template>
 
 <script>

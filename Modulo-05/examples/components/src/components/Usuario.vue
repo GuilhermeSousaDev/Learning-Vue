@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h2>{{ name }}</h2>
-        <button @click="reverseName()">Reverse</button>
+        <h2>{{ reverseName() }}</h2>
+        <button @click="reloadName()">Reload</button>
     </div>
 </template>
 
@@ -11,12 +11,18 @@
             name: {
                 type: String,
                 //required: true,
-                default: "Anonimo"
+                default: function () {
+                    return Array(10).fill(0).join('')
+                }
             },
         },
         methods: {
             reverseName() {
                 return this.name.split('').reverse('').join('')
+            },
+            reloadName() {
+                this.name = "Pedro"
+                this.$emit('changeName', this.name)
             }
         }
     }
