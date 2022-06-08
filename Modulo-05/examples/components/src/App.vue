@@ -3,12 +3,11 @@ import Usuario from './components/Usuario.vue'
 </script>
 
 <template>
-  <p>Componente Pai</p>
-  {{ name }}
+  <p>Componente Pai {{ name }}</p>
   <button @click="changeName()">Change</button>
   <Usuario 
     :name="name" 
-    @changeName="name = $event"  
+    :reloadName="reloadName"
   />
 </template>
 
@@ -21,7 +20,10 @@ import Usuario from './components/Usuario.vue'
     },
     methods: {
       changeName () {
-        this.name = 'Ana';
+        this.name = 'Ana'
+      },
+      reloadName () {
+        this.name = 'Pedro'
       }
     },
   }
