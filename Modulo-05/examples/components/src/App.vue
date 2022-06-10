@@ -1,21 +1,33 @@
 <script setup>
 import Usuario from './components/Usuario.vue'
+import EditUsuario from './components/EditUsuario.vue';
 </script>
 
 <template>
-  <p>Componente Pai {{ name }}</p>
-  <button @click="changeName()">Change</button>
-  <Usuario 
-    :name="name" 
-    :reloadName="reloadName"
-  />
+  <div class="container">
+    <p>Componente Pai {{ name }}</p>
+    <p>Idade: {{ age }}</p>
+    <button @click="changeName()">Change</button>
+    <hr>
+    <Usuario 
+      :name="name" 
+      :age="age"
+      :reloadName="reloadName"
+    />
+    <hr>
+    <EditUsuario 
+      :age="age" 
+      :changedAge="changeAge"
+    />
+  </div>
 </template>
 
 <script>
   export default {
     data() {
       return {
-        name: 'Pedro'
+        name: 'Pedro',
+        age: 17
       }
     },
     methods: {
@@ -24,6 +36,9 @@ import Usuario from './components/Usuario.vue'
       },
       reloadName () {
         this.name = 'Pedro'
+      },
+      changeAge () {
+        this.age = 33;
       }
     },
   }
