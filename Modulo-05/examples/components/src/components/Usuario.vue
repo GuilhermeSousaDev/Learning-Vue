@@ -2,7 +2,7 @@
     <div>
         <h2>{{ reverseName() }}</h2>
         <p>Idade do Usuário <strong>{{ age }}</strong></p>
-        <button @click="reloadName">Reload</button>
+        <button @click="reloadName()">Reload</button>
     </div>
 </template>
 

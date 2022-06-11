@@ -17,7 +17,7 @@ import EditUsuario from './components/EditUsuario.vue';
     <hr>
     <EditUsuario 
       :age="age" 
-      :changedAge="changeAge"
+      :changeAge="changeAge"
     />
   </div>
 </template>
