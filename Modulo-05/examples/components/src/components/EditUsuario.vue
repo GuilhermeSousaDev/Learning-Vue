@@ -7,12 +7,19 @@
 </template>
 
 <script>
+import barramento from '../barramento'
+
 export default {
     props: {
         age: {
             type: Number
         },
-        changeAge: Function
     },
+    methods: {
+        changeAge() {
+            this.age = 33;
+            barramento.$emit('changedAge', this.age)
+        }
+    }
 }
 </script>

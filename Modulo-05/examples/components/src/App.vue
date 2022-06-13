@@ -15,10 +15,7 @@ import EditUsuario from './components/EditUsuario.vue';
       :reloadName="reloadName"
     />
     <hr>
-    <EditUsuario 
-      :age="age" 
-      :changeAge="changeAge"
-    />
+    <EditUsuario :age="age"/>
   </div>
 </template>
 
@@ -41,5 +38,10 @@ import EditUsuario from './components/EditUsuario.vue';
         this.age = 33;
       }
     },
+    created() {
+      barramento.$on('changedAge', age => {
+        console.log(age)
+      })
+    }
   }
 </script>
