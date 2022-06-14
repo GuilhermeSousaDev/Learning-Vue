@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import barramento from '../barramento'
-
 export default {
     props: {
         age: {
@@ -18,7 +16,6 @@ export default {
     methods: {
         changeAge() {
             this.age = 33;
-            barramento.$emit('changedAge', this.age)
         }
     }
 }
