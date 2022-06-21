@@ -6,7 +6,12 @@
 
 <script>
 export default {
-    props: ['citacao']
+    activated() {
+        console.log('activated')
+    },
+    deactivated() {
+        console.log('deactivated')
+    },
 }
 </script>
 

@@ -4,7 +4,9 @@
 			<button @click="componente = 'Citacoes'">Citacoes</button>
 			<button @click="componente = 'Sobre'">Sobre</button>
 		</span>
-		<component :is="componente" />
+		<keep-alive>
+			<component :is="componente" />
+		</keep-alive>
 	</div>
 </template>
 
@@ -16,7 +18,7 @@ export default {
 	components: { Citacoes, Sobre },
 	data() {
 		return {
-			componente: 'Citacoes'
+			componente: 'Citacoes',
 		}
 	}
 }
