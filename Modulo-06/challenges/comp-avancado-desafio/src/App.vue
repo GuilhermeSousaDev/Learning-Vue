@@ -8,7 +8,9 @@
 			<button @click="component = 'Azul'" class="azul">Carregar Componente Azul</button>
 		</span>
 		
-		<component :is="component" />
+		<component :is="component">
+			<p>Conteúdo do Componente <strong>{{ component }}</strong></p>
+		</component>
 	</div>
 </template>
 
@@ -20,7 +22,11 @@ import Azul from './components/Azul.vue'
 export default {
 	name: 'app',
 	components: { Vermelho, Verde, Azul },
-	component: 'Vermelho'
+	data() {
+		return {
+			component: 'Vermelho'
+		}
+	}
 }
 </script>
 
