@@ -1,13 +1,13 @@
 <script>
   export default {
-    //created() {
-    //  this.todoList.push([...localStorage.getItem('todoList').split(',')]);
-    //  console.log(this.todoList[0])
-    //},
+    created() {
+      if (localStorage.getItem('todoList')) {
+        this.todoList = JSON.parse(localStorage.getItem('todoList'));
+        this._setProgress();
+      }
+    },
     updated() {
-      const selectedItems = this.todoList.filter(todo => todo.selected === true);
-
-      this.range = Math.round(selectedItems.length * 100 / this.todoList.length);
+      this._setProgress();
     },
     data() {
       return {
@@ -25,16 +25,28 @@
             selected: false
           }
           this.todoList.push(todo);
-          //localStorage.setItem('todoList', this.todoList);
           this.inpValue = '';
+
+          this._setOrUpdateValueInStorage();
         }
       },
       removeTodo(id) {
         this.todoList = this.todoList.filter(todo => todo.id !== id);
+
+        this._setOrUpdateValueInStorage();
       },
       selectTodo(id) {
         const todo = this.todoList.filter(todo => todo.id === id)[0];
         todo.selected = !todo.selected;
+
+        this._setOrUpdateValueInStorage();
+      },
+      _setProgress() {  
+        const selectedItems = this.todoList.filter(todo => todo.selected === true);
+        this.range = Math.round(selectedItems.length * 100 / this.todoList.length);
+      },
+      _setOrUpdateValueInStorage() {
+        localStorage.setItem('todoList', JSON.stringify(this.todoList));
       }
     },
   }
@@ -43,7 +55,7 @@
 <template>
   <h1>Todo list</h1>
   {{ range }}% <br>
-  <progress max="100" :value="range"></progress> 
+  <progress v-if="todoList.length && range" max="100" :value="range"></progress> 
   <br>
   <input type="text" v-bind:value="inpValue" @input="e => inpValue = e.target.value" />
   <br>
