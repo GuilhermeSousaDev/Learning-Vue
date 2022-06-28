@@ -4,7 +4,11 @@
         {{ range }}% <br>
         <progress v-if="range" max="100" :value="range"></progress>
         <br>
-        <input type="text" v-bind:value="inpValue" @input="e => chooseTaskName(e)" />
+        <input 
+            type="text" 
+            v-bind:value="inpValue" @input="e => chooseTaskName(e)" 
+            @keydown.enter="addTodo()"
+        />
         <br>
         <button @click="addTodo()">Add Todo</button>
     </div>
