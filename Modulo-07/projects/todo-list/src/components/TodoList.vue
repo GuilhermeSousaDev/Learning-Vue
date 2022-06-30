@@ -3,12 +3,12 @@
         <template v-for="todo in todoList">
             <div v-if="todo.selected === true">
                 <div class="todo selected" @click="selectTodo(todo.id)">
-                    <span @click="removeTodo(todo.id)" id="removeTodo">x</span>
+                    <span @click.stop="removeTodo(todo.id)" id="removeTodo">x</span>
                     <p>{{ todo.text }}</p>
                 </div>
             </div>
             <div v-else class="todo" @click="selectTodo(todo.id)">
-                <span @click="removeTodo(todo.id)" id="removeTodo">x</span>
+                <span @click.stop="removeTodo(todo.id)" id="removeTodo">x</span>
                 <p>{{ todo.text }}</p>
             </div>
         </template>

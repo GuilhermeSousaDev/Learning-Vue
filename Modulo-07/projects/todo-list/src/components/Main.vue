@@ -39,7 +39,8 @@ export default {
         },
         selectTodo(id) {
             const todo = this.todoList.filter(todo => todo.id === id)[0]; 
-            if(todo) todo.selected = !todo.selected;
+            //if(todo) 
+            todo.selected = !todo.selected;
 
             this._setOrUpdateValueInStorage();
             this._setProgress();
