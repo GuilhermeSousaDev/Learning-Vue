@@ -13,6 +13,15 @@ export default {
             todoList: []
         };
     },
+    watch: {
+      todoList: {
+        deep: true,
+        handler() {
+          this._setOrUpdateValueInStorage();
+          this._setProgress();
+        }
+      }
+    },
     methods: {
         addTodo() {
             if (this.inpValue) {
@@ -25,25 +34,15 @@ export default {
                     };
                     this.todoList.push(todo);
                     this.inpValue = "";
-
-                    this._setOrUpdateValueInStorage();
-                    this._setProgress();
                 }
             }
         },
         removeTodo(id) {
             this.todoList = this.todoList.filter(todo => todo.id !== id);
-
-            this._setOrUpdateValueInStorage();
-            this._setProgress();
         },
         selectTodo(id) {
             const todo = this.todoList.filter(todo => todo.id === id)[0]; 
-            //if(todo) 
             todo.selected = !todo.selected;
-
-            this._setOrUpdateValueInStorage();
-            this._setProgress();
         },
         chooseTaskName(e) {
             this.inpValue = e.target.value;
@@ -54,7 +53,6 @@ export default {
         _loadValueInStorage() {
             if (localStorage.getItem("todoList")) {
                 this.todoList = JSON.parse(localStorage.getItem("todoList"));
-                this._setProgress();
             }
         },
         _setProgress() {
