@@ -17,8 +17,20 @@
 					<textarea v-model="user.message" name="" cols="30" rows="5"></textarea>
 				</Rotulo>
 				<Rotulo nome="Características do Problema">
-					<span class="mr-4"><input type="checkbox" value="reproduzivel"> Reproduzível</span>
-					<span><input type="checkbox" value="intermitente"> Intermitente</span>
+					<span class="mr-4">
+						<input 
+							v-model="caracteristicas"
+							type="checkbox" 
+							value="reproduzivel">
+						Reproduzível
+					</span>
+					<span>
+						<input 
+							v-model="caracteristicas"
+							type="checkbox" 
+							value="intermitente">
+						Intermitente
+					</span>
 				</Rotulo>
 				<Rotulo nome="Qual produto?">
 					<span class="mr-4"><input type="radio"> Web</span>
@@ -26,8 +38,13 @@
 					<span><input type="radio"> Outro</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
-					<select name="" id="">
-						<option></option>
+					<select v-model="prioridade">
+						<option 
+							v-for="prioridade of prioridades"
+							:key="prioridade.code"
+						>
+							{{ prioridade.code }} - {{ prioridade.name }}
+						</option>
 					</select>
 				</Rotulo>
 				<Rotulo nome="Primeira Reclamação?">
@@ -51,13 +68,17 @@
 					<span>{{ user.message }}</span>
 				</Rotulo>
 				<Rotulo nome="Marque as Opções">
-					<span>???</span>
+					<span>
+						<ul>
+							<li v-for="c of caracteristicas" :key="c">{{ c }}</li>
+						</ul>
+					</span>
 				</Rotulo>
 				<Rotulo nome="Qual produto?">
 					<span>???</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
-					<span>???</span>
+					<span>{{ prioridade }}</span>
 				</Rotulo>
 				<Rotulo nome="Primeira Reclamação?">
 					<span>???</span>
@@ -81,7 +102,15 @@ export default {
 				password: '',
 				age: '',
 				message: ''
-			}
+			},
+			product: 'web',
+			prioridade: '',
+			prioridades: [
+				{ code: 1, name: 'Baixa' },
+				{ code: 2, name: 'Média' },
+				{ code: 3, name: 'Alta' },
+			],
+			caracteristicas: []
 		}
 	}
 }
