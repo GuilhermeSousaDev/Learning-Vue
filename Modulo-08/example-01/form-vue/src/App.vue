@@ -2,7 +2,7 @@
 	<div id="app">
 		<h1>Registrar Reclamação</h1>
 		<div class="conteudo">
-			<form class="painel">
+			<form class="painel" v-if="!submited">
 				<div class="cabecalho">Formulário</div>
 				<Rotulo nome="E-mail">
 					<input type="text" v-model.lazy.trim="user.email">
@@ -33,9 +33,18 @@
 					</span>
 				</Rotulo>
 				<Rotulo nome="Qual produto?">
-					<span class="mr-4"><input type="radio"> Web</span>
-					<span class="mr-4"><input type="radio"> Mobile</span>
-					<span><input type="radio"> Outro</span>
+					<span class="mr-4">
+						<input type="radio" value="Web" v-model="product"> 
+						Web
+					</span>
+					<span class="mr-4">
+						<input type="radio" value="Mobile"  v-model="product">
+					 	Mobile
+					</span>
+					<span>
+						<input type="radio" value="Outro"  v-model="product">
+						Outro
+					</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
 					<select v-model="prioridade">
@@ -48,12 +57,12 @@
 					</select>
 				</Rotulo>
 				<Rotulo nome="Primeira Reclamação?">
-					<Escolha />
+					<Escolha v-model="escolha" />
 				</Rotulo>
 				<hr>
-				<button>Enviar</button>
+				<button @click.prevent="submitForm()">Enviar</button>
 			</form>
-			<div class="painel">
+			<div class="painel" v-else>
 				<div class="cabecalho">Resultado</div>
 				<Rotulo nome="E-mail">
 					<span>{{ user.email }}</span>
@@ -75,13 +84,13 @@
 					</span>
 				</Rotulo>
 				<Rotulo nome="Qual produto?">
-					<span>???</span>
+					<span>{{ product }}</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
 					<span>{{ prioridade }}</span>
 				</Rotulo>
 				<Rotulo nome="Primeira Reclamação?">
-					<span>???</span>
+					<span>{{ escolha }}</span>
 				</Rotulo>
 			</div>
 		</div>
@@ -103,14 +112,21 @@ export default {
 				age: '',
 				message: ''
 			},
-			product: 'web',
-			prioridade: '',
+			product: 'Web',
+			prioridade: '1 - Baixa',
 			prioridades: [
 				{ code: 1, name: 'Baixa' },
 				{ code: 2, name: 'Média' },
 				{ code: 3, name: 'Alta' },
 			],
-			caracteristicas: []
+			caracteristicas: [],
+			escolha: true,
+			submited: false
+		}
+	},
+	methods: {
+		submitForm() {
+			this.submited = true;
 		}
 	}
 }

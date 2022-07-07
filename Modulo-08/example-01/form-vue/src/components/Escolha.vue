@@ -1,14 +1,19 @@
 <template>
     <div class="escolha"
-        @click="ligado = !ligado"
-        :class="{ligado, desligado: !ligado}">
-        <div v-if="ligado" class="botao"></div>
-        <div v-else class="botao"></div>
+        @click="value = !value"
+        :class="{ligado: value, desligado: !value}">
+        <div class="botao"></div>
     </div>
 </template>
 
 <script>
 export default {
+    props: {
+        value: {
+            type: Boolean,
+            required: true,
+        }
+    },
     data() {
         return {
             ligado: false
