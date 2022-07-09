@@ -14,3 +14,9 @@ export default {
     props: ['changeFullName']
 }
 </script>
+
+<style>
+    input {
+        margin-bottom: 10px;
+    }
+</style>

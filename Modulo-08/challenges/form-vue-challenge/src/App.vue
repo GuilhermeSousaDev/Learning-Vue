@@ -9,7 +9,6 @@
       <span>
         Save Form ?
         <input type="checkbox" v-model="form.saveForm" />
-        Sim
       </span>
 
       <button @click="submited = true">Enviar</button>
