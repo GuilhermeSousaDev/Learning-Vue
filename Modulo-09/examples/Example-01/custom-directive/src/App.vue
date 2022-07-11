@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <p v-blue>Custom Directive</p>
+    <p v-blue="'blue'">Custom Blue Directive</p>
+    <p v-blue="color">Custom Red Directive</p>
+    <p v-blue:background="color">Custom arg Red Directive</p>
   </div>
 </template>
 
@@ -8,6 +10,11 @@
 
 export default {
   name: 'App',
+  data() {
+    return {
+      color: 'red'
+    }
+  }
 }
 </script>
 

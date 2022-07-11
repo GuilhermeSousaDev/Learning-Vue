@@ -4,8 +4,12 @@ import App from './App.vue'
 Vue.config.productionTip = false
 
 Vue.directive('blue', {
-  bind(el) {
-    el.style.backgroundColor = 'blue';
+  bind(el, binding) {
+    if (binding.arg === 'background') {
+      el.style.backgroundColor = binding.value;
+    } else {
+      el.style.color = binding.value;
+    }
   }
 });
 
