@@ -3,13 +3,19 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
-Vue.directive('blue', {
+Vue.directive('color', {
   bind(el, binding) {
-    if (binding.arg === 'background') {
-      el.style.backgroundColor = binding.value;
-    } else {
-      el.style.color = binding.value;
-    }
+    let slowing = 0;
+
+    if (binding.modifiers['slow']) slowing = 3000;
+
+    setTimeout(() => {
+      if (binding.arg === 'background') {
+        el.style.backgroundColor = binding.value;
+      } else {
+        el.style.color = binding.value;
+      }
+    }, slowing);
   }
 });
 

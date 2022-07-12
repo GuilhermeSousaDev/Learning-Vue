@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <p v-blue="'blue'">Custom Blue Directive</p>
-    <p v-blue="color">Custom Red Directive</p>
-    <p v-blue:background="color">Custom arg Red Directive</p>
+    <p v-color="'blue'">Custom Blue Directive</p>
+    <p v-color.slow="color">Custom Red Directive</p>
+    <p v-color:background.slow="color">Custom arg Red Directive</p>
   </div>
 </template>
 
