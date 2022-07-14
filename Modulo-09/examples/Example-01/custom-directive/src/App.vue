@@ -1,8 +1,12 @@
 <template>
   <div id="app">
     <p v-color="'blue'">Custom Blue Directive</p>
-    <p v-color.slow.alternate="color">Custom Red Directive</p>
-    <p v-color:background.slow.alternate="color">Custom arg Red Directive</p>
+    <p v-color.slow.alternate="{ 
+      colorOne: 'blue', colorTwo: 'purple', interval: 5000, slow: 1000 
+    }">Custom Red Directive</p>
+    <p v-color:background.slow.alternate="{ 
+      colorOne: 'red', colorTwo: 'purple', slow: 1000, interval: 5000 
+    }">Custom arg Red Directive</p>
   </div>
 </template>
 
@@ -23,10 +27,10 @@ export default {
 
         let slowing = 0;
 
-        if (binding.modifiers['slow']) slowing = 3000;
+        if (binding.modifiers['slow']) slowing = binding.value.slow;
 
-        const colorOne = binding.value;
-        const colorTwo = 'purple';
+        const colorOne = binding.value.colorOne;
+        const colorTwo = binding.value.colorTwo;
         let primaryColor = colorOne;
 
         setTimeout(() => {
@@ -34,9 +38,9 @@ export default {
             setInterval(() => {
               primaryColor = primaryColor === colorOne ? colorTwo : colorOne;
               applyColor(primaryColor);
-            }, 1000); 
+            }, binding.value.interval); 
           } else {
-            applyColor(binding.value);
+            applyColor(binding.value.colorOne);
           }
         }, slowing);
       }
