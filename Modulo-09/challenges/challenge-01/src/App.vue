@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     {{ num }}
-    <p v-fn:click="() => callFnDirective()">Gus</p>
+    <p v-fn:click="() => increment()">+</p>
+    <p v-fn:click="() => decrement()">-</p>
   </div>
 </template>
 
@@ -18,17 +19,18 @@ export default {
     'fn': {
       bind(el, binding, vnode) {
         if (binding.arg === 'click') {
-          console.log(binding.value)
-          console.log(binding.expression)
           el.addEventListener('click', () => binding.value());
         }
       }
     },
-    methods: {
-      callFnDirective() {
+  },
+  methods: {
+      increment() {
         this.num++;
+      },
+      decrement() {
+        this.num--;
       }
-    }
   }
 }
 </script>
