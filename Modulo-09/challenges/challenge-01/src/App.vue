@@ -1,8 +1,14 @@
 <template>
   <div id="app">
     {{ num }}
-    <p v-fn:click="() => increment()">+</p>
-    <p v-fn:click="() => decrement()">-</p>
+    <p 
+      v-fn:mouseenter="getIn"
+      v-fn:mouseleave="getOut"
+    >
+      {{ verb }}
+    </p>
+    <button v-fn:click="increment">+</button>
+    <button v-fn:click="decrement">-</button>
   </div>
 </template>
 
@@ -12,15 +18,20 @@ export default {
   name: 'App',
   data() {
     return {
-      num: 0
+      num: 0,
+      verb: 'empty'
     }
   },
   directives: {
     'fn': {
-      bind(el, binding, vnode) {
-        if (binding.arg === 'click') {
-          el.addEventListener('click', () => binding.value());
+      bind(el, binding) {
+        const events = ['mouseenter', 'mouseleave', 'click'];
+
+        if (events.includes(binding.arg)) {
+          el.addEventListener(binding.arg, binding.value);
         }
+
+        
       }
     },
   },
@@ -30,6 +41,12 @@ export default {
       },
       decrement() {
         this.num--;
+      },
+      getIn() {
+        this.verb = 'Entrou';
+      },
+      getOut() {
+        this.verb = 'Saiu';
       }
   }
 }
