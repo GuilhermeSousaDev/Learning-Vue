@@ -30,8 +30,6 @@ export default {
         if (events.includes(binding.arg)) {
           el.addEventListener(binding.arg, binding.value);
         }
-
-        
       }
     },
   },
