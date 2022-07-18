@@ -1,12 +1,30 @@
 <template>
   <div id="app">
     <h1>Filters and Mixins</h1>
+    <hr>
+    <p>{{ cpf | cpf }}</p>
   </div>
 </template>
 
 <script>
 export default {
   name: 'App',
+  filters: {
+    cpf(value) {
+      const arr = value.split('');
+
+      arr.splice(3, 0, '.');
+      arr.splice(7, 0, '.');
+      arr.splice(11, 0, '-');
+
+      return arr.join('');
+    }
+  },
+  data() {
+    return {
+      cpf: '60080070090'
+    }
+  }
 }
 </script>
 
