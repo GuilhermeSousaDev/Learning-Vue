@@ -3,6 +3,7 @@
     <h1>Filters and Mixins</h1>
     <hr>
     <p>{{ cpf | cpf | reverse }}</p>
+    <input type="text" :value="cpf | cpf | reverse" />
   </div>
 </template>
 
