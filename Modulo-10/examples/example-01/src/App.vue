@@ -4,12 +4,28 @@
     <hr>
     <p>{{ cpf | cpf | reverse }}</p>
     <input type="text" :value="cpf | cpf | reverse" />
+
+    <Fruits />
+    <hr>
+    <div>
+        <ul>
+            <li v-for="fruit in fruits" :key="fruit">{{ fruit }}</li>
+        </ul>
+        <input type="text" v-model="fruit" @keydown.enter="add" />
+    </div>
   </div>
 </template>
 
 <script>
+import Fruits from './components/Fruits.vue';
+import FruitsMixin from './mixins/FruitsMixin';
+
 export default {
   name: 'App',
+  components: {
+    Fruits
+  },
+  mixins: [FruitsMixin],
   filters: {
     cpf(value) {
       const arr = value.split('');
@@ -23,7 +39,8 @@ export default {
   },
   data() {
     return {
-      cpf: '60080070090'
+      cpf: '60080070090',
+      fruits: ['banana']
     }
   }
 }
