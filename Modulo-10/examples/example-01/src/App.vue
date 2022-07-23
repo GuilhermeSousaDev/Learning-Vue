@@ -13,6 +13,8 @@
         </ul>
         <input type="text" v-model="fruit" @keydown.enter="add" />
     </div>
+
+    <h1>{{ globalMixin }}</h1>
   </div>
 </template>
 
