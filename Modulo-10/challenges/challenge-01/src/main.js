@@ -4,7 +4,7 @@ import App from './App.vue'
 Vue.config.productionTip = false
 
 Vue.filter('countLetters', function(value) {
-  return `${value} (${value.length})`
+  return value.split('').map(letter => `${letter} (${letter.length})`);
 });
 
 Vue.mixin({
@@ -18,7 +18,7 @@ Vue.mixin({
       return this.word.split(' ').join(',');
     },
     countLetters() {
-      return `${this.word} (${this.word.length})`;
+      return this.word.split('').map(letter => `${letter} (${letter.length})`);
     }
   }
 });
