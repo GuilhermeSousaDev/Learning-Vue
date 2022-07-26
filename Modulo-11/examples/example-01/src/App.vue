@@ -3,7 +3,7 @@
     <h1>Animações</h1>
     <hr>
     <button>Show Message</button>
-    <div>
+    <div class="fade">
       <p>{{ msg }}</p>
     </div>
   </div>
@@ -29,5 +29,23 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+};
+.fade-enter {
+
+}
+.fade-enter-active {
+
+}
+.fade-enter-to {
+  
+}
+.fade-leave {
+  
+}
+.fade-leave-active {
+  
+}
+.fade-leave-to {
+  
 }
 </style>
