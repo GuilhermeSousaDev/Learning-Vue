@@ -2,10 +2,10 @@
   <div id="app">
     <h1>Animações</h1>
     <hr>
-    <button>Show Message</button>
-    <div class="fade">
+    <button @click="show === true? show = false : show = true">Show Message</button>
+    <transition name="fade" v-if="show">
       <p>{{ msg }}</p>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -30,22 +30,10 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 };
-.fade-enter {
-
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
-.fade-enter-active {
-
-}
-.fade-enter-to {
-  
-}
-.fade-leave {
-  
-}
-.fade-leave-active {
-  
-}
-.fade-leave-to {
-  
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 2s;
 }
 </style>
