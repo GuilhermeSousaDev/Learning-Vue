@@ -2,9 +2,12 @@
   <div id="app">
     <h1>Animações</h1>
     <hr>
-    <button @click="show === true? show = false : show = true">Show Message</button>
-    <transition name="fade" v-if="show">
-      <p>{{ msg }}</p>
+    <button @click="show === false? show = true : show = false">Show Message</button>
+    <transition name="fade">
+      <p v-if="show">{{ msg }}</p>
+    </transition>
+    <transition name="slide">
+      <p v-if="show">{{ msg }}</p>
     </transition>
   </div>
 </template>
@@ -30,10 +33,33 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 };
-.fade-enter, .fade-leave-to {
-  opacity: 0;
+@keyframes fade-in {
+  from { transform: translateX(10px) }
+  to { transform: translateX(0) }
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 2s;
+@keyframes fade-out {
+  from { transform: translateX(0) }
+  to { transform: translateX(10px) }
+}
+.fade-enter-active {
+  animation: fade-in 2s ease;
+}
+.fade-leave-active {
+  animation: fade-out 2s ease;
+}
+
+@keyframes slide-in {
+  from { transform: translateY(40px) }
+  to { transform: translateY(0) }
+}
+@keyframes slide-out {
+  from { transform: translateY(0) }
+  to { transform: translateY(40px) }
+}
+.slide-enter-active {
+  animation: slide-in 2s ease;
+}
+.slide-leave-active {
+  animation: slide-out 2s ease;
 }
 </style>
