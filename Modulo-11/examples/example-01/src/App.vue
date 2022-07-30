@@ -4,15 +4,20 @@
     <hr>
     <button @click="show === false? show = true : show = false">Show Message</button>
     <transition name="fade">
-      <p v-if="show">{{ msg }}</p>
+      <p style="background: aqua" v-if="show">{{ msg }}</p>
     </transition>
-    <transition name="slide" type="animation">
-      <p v-if="show">{{ msg }}</p>
+    <transition 
+      enter-active-class="animated bounce"
+      leave-active-class="animated shake"
+    >
+      <p style="background: aqua" v-if="show">{{ msg }}</p>
     </transition>
   </div>
 </template>
 
 <script>
+import 'animate.css';
+
 export default {
   name: 'App',
   data() {
@@ -33,6 +38,9 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 };
+.msg {
+  background-color: aqua;
+}
 @keyframes fade-in {
   from { transform: translateX(10px) }
   to { transform: translateX(0) }
