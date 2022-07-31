@@ -3,14 +3,9 @@
     <h1>Animações</h1>
     <hr>
     <button @click="show === false? show = true : show = false">Show Message</button>
-    <transition name="fade">
-      <p style="background: aqua" v-if="show">{{ msg }}</p>
-    </transition>
-    <transition 
-      enter-active-class="animated bounce"
-      leave-active-class="animated shake"
-    >
-      <p style="background: aqua" v-if="show">{{ msg }}</p>
+    <transition name="slide" mode="out-in">
+      <p v-if="show" key="inTrue">{{ msg }}</p>
+      <p v-else key="inFalse">Info User</p>
     </transition>
   </div>
 </template>
