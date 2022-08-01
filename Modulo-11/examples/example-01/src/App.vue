@@ -3,9 +3,19 @@
     <h1>Animações</h1>
     <hr>
     <button @click="show === false? show = true : show = false">Show Message</button>
-    <transition name="slide" mode="out-in">
-      <p v-if="show" key="inTrue">{{ msg }}</p>
-      <p v-else key="inFalse">Info User</p>
+    <transition
+      :css="false"
+      @before-enter=""
+      @after-enter=""
+      @enter=""
+      @enter-cancelled=""
+
+      @before-leave=""
+      @after-leave=""
+      @leave=""
+      @leave-cancelled=""
+    >
+      <div v-if="show" class="box"></div>
     </transition>
   </div>
 </template>
