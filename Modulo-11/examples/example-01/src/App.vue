@@ -12,19 +12,30 @@
     >
       <div style="background: green; width: 0px; height: 200px;" v-if="show">{{ msg }}</div>
     </transition>
+    <button @click="componentRendered = 'Alert'">Alert Comp</button>
+    <button @click="componentRendered = 'Message'">Message Comp</button>
+
+    <transition name="slide" mode="out-in">
+      <component :is="componentRendered"></component>
+    </transition>
+
   </div>
 </template>
 
 <script>
 import 'animate.css';
+import Alert from './components/Alert.vue';
+import Message from './components/Message.vue';
 
 export default {
   name: 'App',
+  components: { Alert, Message },
   data() {
     return {
       msg: 'Info User Message',
       show: false,
       initialWidth: 0,
+      componentRendered: 'Alert'
     }
   },
   methods: {
