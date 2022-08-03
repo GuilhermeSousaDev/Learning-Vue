@@ -5,17 +5,12 @@
     <button @click="show === false? show = true : show = false">Show Message</button>
     <transition
       :css="false"
-      @before-enter=""
-      @after-enter=""
-      @enter=""
-      @enter-cancelled=""
-
-      @before-leave=""
-      @after-leave=""
-      @leave=""
-      @leave-cancelled=""
+      @enter="enter"
+      @before-leave="beforeLeave"
+      @before-enter="beforeEnter"
+      @leave="leave"
     >
-      <div v-if="show" class="box"></div>
+      <div style="background: green; width: 0px; height: 200px;" v-if="show">{{ msg }}</div>
     </transition>
   </div>
 </template>
@@ -28,7 +23,37 @@ export default {
   data() {
     return {
       msg: 'Info User Message',
-      show: false
+      show: false,
+      initialWidth: 0,
+    }
+  },
+  methods: {
+    animated(el, done, negative) {
+      let count = 1;
+
+      const time = setInterval(() => {
+        const newWidth = this.initialWidth + (negative ? -count * 10 : count * 10);
+        el.style.width = `${newWidth}px`;
+        count++;
+        if (count > 30) {
+          clearInterval(time);
+          done();
+        }
+      }, 50);
+    },
+    beforeEnter(el) {
+      this.initialWidth = 0;
+      el.style.width = `${this.initialWidth}px`;
+    },
+    enter(el, done) {
+      this.animated(el, done, false);
+    },
+    beforeLeave(el) {
+      this.initialWidth = 300;
+      el.style.width = `${this.initialWidth}px`;
+    },
+    leave(el, done) {
+      this.animated(el, done, true);
     }
   }
 }
@@ -36,6 +61,10 @@ export default {
 
 <style>
 #app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 600px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -45,7 +74,7 @@ export default {
 };
 .msg {
   background-color: aqua;
-}
+};
 @keyframes fade-in {
   from { transform: translateX(10px) }
   to { transform: translateX(0) }
