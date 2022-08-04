@@ -12,13 +12,17 @@
     >
       <div style="background: green; width: 0px; height: 200px;" v-if="show">{{ msg }}</div>
     </transition>
+    <hr>
     <button @click="componentRendered = 'Alert'">Alert Comp</button>
     <button @click="componentRendered = 'Message'">Message Comp</button>
-
     <transition name="slide" mode="out-in">
       <component :is="componentRendered"></component>
     </transition>
-
+    <hr>
+    <button @click="addStudent()">Add Student</button>
+    <div v-for="(student, i) in students" :key="i">
+      <span class="students-list" @click="removeStudent(i)">{{ student }}</span>
+    </div>
   </div>
 </template>
 
@@ -32,6 +36,7 @@ export default {
   components: { Alert, Message },
   data() {
     return {
+      students: ['Roberto', 'Julia', 'Teresa', 'Paulo'],
       msg: 'Info User Message',
       show: false,
       initialWidth: 0,
@@ -39,6 +44,14 @@ export default {
     }
   },
   methods: {
+    addStudent() {
+      const randomStudentName = Math.random().toString(36).substring(2);
+
+      this.students.push(randomStudentName);
+    },
+    removeStudent(index) {
+      this.students.splice(index, 1);
+    },
     animated(el, done, negative) {
       let count = 1;
 
@@ -86,6 +99,10 @@ export default {
 .msg {
   background-color: aqua;
 };
+.students-list {
+  border: 1px solid black;
+  padding: 5px;
+}
 @keyframes fade-in {
   from { transform: translateX(10px) }
   to { transform: translateX(0) }
