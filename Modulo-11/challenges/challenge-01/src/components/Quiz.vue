@@ -1,0 +1,102 @@
+<template>
+    <div class="container">
+        <h1>{{ randomQuestion.title }}?</h1>
+        <div class="questions">
+            <div 
+                class="question" 
+                v-for="response in randomQuestion.responses"
+                @click="e => showResponse(e)" 
+            >
+                <span>{{ response.title }}</span>
+                <input type="hidden" :value="response.correct">
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: "Quiz",
+    computed: {
+        randomQuestion() {
+            return this.questions[Math.floor(Math.random() * this.questions.length)];
+        }
+    },
+    methods: {
+        showResponse(e) {
+            console.log(e)
+        }
+    },
+    data() {
+        return {
+            questions: [
+                {
+                    title: 'Quem foi a primeira pessoa a viajar no Espaço',
+                    responses: [
+                        { title: 'Yuri Gagarin', correct: true },
+                        { title: 'A cadela Laika', correct: false },
+                        { title: 'Neil Armstrong', correct: false },
+                        { title: 'Marcos Pontes', correct: false },
+                    ]
+                },
+                {
+                    title: 'Qual a montanha mais alta do mundo',
+                    responses: [
+                        { title: 'Mauna Kea', correct: false },
+                        { title: 'Dhaulagiri', correct: false },
+                        { title: 'Monte Chimborazo', correct: false },
+                        { title: 'Monte Everest', correct: true },
+                    ]
+                },
+                {
+                    title: 'Onde se localiza Machu Picchu',
+                    responses: [
+                        { title: 'Colômbia', correct: false },
+                        { title: 'Peru', correct: true },
+                        { title: 'China', correct: false },
+                        { title: 'Bolívia', correct: false },
+                    ]
+                },
+                {
+                    title: 'Que país tem o formato de uma bota',
+                    responses: [
+                        { title: 'Butão', correct: false },
+                        { title: 'Brasil', correct: false },
+                        { title: 'Portugal', correct: false },
+                        { title: 'Itália', correct: true },
+                    ]
+                },
+            ]
+        }
+    }
+}
+</script>
+
+<style>
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 1rem;
+}
+
+.questions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 50%;
+}
+.question {
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 0.5rem;
+}
+.question:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+}
+</style>
