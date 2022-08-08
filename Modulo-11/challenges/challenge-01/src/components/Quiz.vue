@@ -1,7 +1,7 @@
 <template>
-    <div class="container" v-if="!message">
-        <h1>{{ randomQuestion.title }}?</h1>
-        <transition name="slide">
+    <transition name="slide">
+        <div class="container" v-if="!message">
+            <h1>{{ randomQuestion.title }}?</h1>
             <div class="questions">
                 <div 
                     class="question" 
@@ -11,11 +11,14 @@
                     <span>{{ response.title }}</span>
                 </div>
             </div>
+        </div>
+        <transition name="slide" v-else>
+            <div class="container">
+                <span>{{ message }}</span>
+                <button @click="randomQuestion">Next</button>
+            </div>
         </transition>
-    </div>
-    <div class="container" v-else>
-        {{ message }}
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -28,11 +31,9 @@ export default {
     },
     methods: {
         showResponse(correct) {
-            if (correct) {
-                this.message = 'Resposta Correta';
-            } else {
-                this.message = 'Resposta Errada';
-            }
+           correct? 
+            this.message = 'Resposta Correta' : 
+            this.message = 'Resposta Errada'
         }
     },
     data() {
@@ -107,5 +108,26 @@ export default {
     background: black;
     color: white;
     cursor: pointer;
+}
+@keyframes slide-in {
+  from { transform: translateY(40px) }
+  to { transform: translateY(0) }
+}
+@keyframes slide-out {
+  from { transform: translateY(0) }
+  to { transform: translateY(40px) }
+}
+.slide-enter-active {
+  animation: slide-in 2s ease;
+  transition: opacity 2s;
+}
+.slide-leave-active {
+  position: absolute;
+  width: 100%;
+  animation: slide-out 2s ease;
+  transition: opacity 2s;
+}
+.slide-enter, .slide-leave-to {
+  opacity: 0;
 }
 </style>
