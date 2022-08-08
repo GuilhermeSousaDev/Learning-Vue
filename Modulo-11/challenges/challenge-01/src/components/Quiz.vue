@@ -1,16 +1,20 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="!message">
         <h1>{{ randomQuestion.title }}?</h1>
-        <div class="questions">
-            <div 
-                class="question" 
-                v-for="response in randomQuestion.responses"
-                @click="e => showResponse(e)" 
-            >
-                <span>{{ response.title }}</span>
-                <input type="hidden" :value="response.correct">
+        <transition name="slide">
+            <div class="questions">
+                <div 
+                    class="question" 
+                    v-for="response in randomQuestion.responses"
+                    @click="e => showResponse(response.correct)" 
+                >
+                    <span>{{ response.title }}</span>
+                </div>
             </div>
-        </div>
+        </transition>
+    </div>
+    <div class="container" v-else>
+        {{ message }}
     </div>
 </template>
 
@@ -23,12 +27,17 @@ export default {
         }
     },
     methods: {
-        showResponse(e) {
-            console.log(e)
+        showResponse(correct) {
+            if (correct) {
+                this.message = 'Resposta Correta';
+            } else {
+                this.message = 'Resposta Errada';
+            }
         }
     },
     data() {
         return {
+            message: '',
             questions: [
                 {
                     title: 'Quem foi a primeira pessoa a viajar no Espaço',
