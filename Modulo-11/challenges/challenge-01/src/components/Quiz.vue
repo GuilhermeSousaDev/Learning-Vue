@@ -13,9 +13,9 @@
             </div>
         </div>
         <transition name="slide" v-else>
-            <div class="container">
+            <div v-verify="message" class="container">
                 <span>{{ message }}</span>
-                <button @click="randomQuestion">Next</button>
+                <button @click="updatePage">Next</button>
             </div>
         </transition>
     </transition>
@@ -29,11 +29,27 @@ export default {
             return this.questions[Math.floor(Math.random() * this.questions.length)];
         }
     },
+    directives: {
+        'verify': {
+            bind(el, binding) {
+                const msg = binding.value;
+
+                if (msg === 'Resposta Correta') {
+                    el.style.background = 'green';
+                } else {
+                    el.style.background = 'red';
+                }
+            }
+        }
+    },
     methods: {
         showResponse(correct) {
            correct? 
             this.message = 'Resposta Correta' : 
             this.message = 'Resposta Errada'
+        },
+        updatePage() {
+            location.reload();
         }
     },
     data() {
@@ -98,6 +114,16 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     width: 50%;
+}
+button {
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 0.5rem;
+}
+button:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
 }
 .question {
     border: 1px solid black;
