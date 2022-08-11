@@ -24,9 +24,12 @@
 <script>
 export default {
     name: "Quiz",
+    created() {
+        this.randomIndex = Math.floor(Math.random() * this.questions.length);
+    },
     computed: {
         randomQuestion() {
-            return this.questions[Math.floor(Math.random() * this.questions.length)];
+            return this.questions[this.randomIndex];
         }
     },
     directives: {
@@ -49,12 +52,14 @@ export default {
             this.message = 'Resposta Errada'
         },
         updatePage() {
-            location.reload();
+            this.message = '';
+            this.randomIndex = Math.floor(Math.random() * this.questions.length);
         }
     },
     data() {
         return {
             message: '',
+            randomIndex: 0,
             questions: [
                 {
                     title: 'Quem foi a primeira pessoa a viajar no Espaço',
