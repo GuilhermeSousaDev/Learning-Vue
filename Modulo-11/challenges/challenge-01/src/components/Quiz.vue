@@ -1,5 +1,5 @@
 <template>
-    <transition name="slide">
+    <transition name="rotate" mode="out-in">
         <div class="container" v-if="!message">
             <h1>{{ randomQuestion.title }}?</h1>
             <div class="questions">
@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <transition name="slide" v-else>
+        <transition name="rotate" mode="out-in" v-else>
             <div v-verify="message" class="container">
                 <span>{{ message }}</span>
                 <button @click="updatePage">Next</button>
@@ -140,25 +140,25 @@ button:hover {
     color: white;
     cursor: pointer;
 }
-@keyframes slide-in {
-  from { transform: translateY(40px) }
-  to { transform: translateY(0) }
+@keyframes rotate-in {
+  from { transform: rotateY(90deg) }
+  to { transform: rotateY(0) }
 }
-@keyframes slide-out {
-  from { transform: translateY(0) }
-  to { transform: translateY(40px) }
+@keyframes rotate-out {
+  from { transform: rotateY(0) }
+  to { transform: rotateY(90deg) }
 }
-.slide-enter-active {
-  animation: slide-in 2s ease;
+.rotate-enter-active {
+  animation: rotate-in 2s ease;
   transition: opacity 2s;
 }
-.slide-leave-active {
+.rotate-leave-active {
   position: absolute;
   width: 100%;
-  animation: slide-out 2s ease;
+  animation: rotate-out 2s ease;
   transition: opacity 2s;
 }
-.slide-enter, .slide-leave-to {
+.rotate-enter, .rotate-leave-to {
   opacity: 0;
 }
 </style>
