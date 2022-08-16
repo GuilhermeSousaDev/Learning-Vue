@@ -2,6 +2,11 @@
   <div id="app">
     <h1>Vue http</h1>
 
+    <div>
+      <input type="text" placeholder="name" v-model="user.name">
+      <input type="text" placeholder="email" v-model="user.email">
+    </div>
+
     <button @click="createUser()">Create User</button>
   </div>
 </template>
@@ -9,18 +14,24 @@
 <script>
 export default {
   name: 'App',
-  methdos: {
-    async createUser() {
-      const user = {
-        name: 'Gui',
-        email: 'gui@gmail.com'
+  data() {
+    return {
+      user: {
+        name: '',
+        email: ''
       }
-      
-      const res = await this.$http.post('users.json', user);
-      console.log(res);
+    }
+  },
+  methods: {
+    createUser() {
+      if (this.user.name && this.user.email) {
+        this.$http.post('users.json', this.user)
+          .then(res => console.log(res))
+      }
     }
   }
 }
+
 </script>
 
 <style>
