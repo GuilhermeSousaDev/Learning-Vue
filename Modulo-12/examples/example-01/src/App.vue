@@ -8,6 +8,15 @@
     </div>
 
     <button @click="createUser()">Create User</button>
+    <button @click="getUsers()">Get Users</button>
+
+    <div>
+      <div v-for="(user, id) in users" :key="id">
+        <strong>Name: </strong> {{ user.name }} <br>
+        <strong>Email: </strong> {{ user.email }} <br>
+        <strong>Id: </strong> {{ id }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -19,15 +28,23 @@ export default {
       user: {
         name: '',
         email: ''
-      }
+      },
+      users: []
     }
   },
   methods: {
-    createUser() {
+    async createUser() {
       if (this.user.name && this.user.email) {
-        this.$http.post('users.json', this.user)
-          .then(res => console.log(res))
+        const res = await this.$http.post('users.json', this.user);
+
+        console.log(res);
+        this.user = {};
       }
+    },
+    async getUsers() {
+      const res = await this.$http.get('users.json');
+
+      this.users = res.data;
     }
   }
 }
