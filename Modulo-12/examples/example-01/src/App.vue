@@ -33,18 +33,20 @@ export default {
     }
   },
   methods: {
-    async createUser() {
+    createUser() {
       if (this.user.name && this.user.email) {
-        const res = await this.$http.post('users.json', this.user);
-
-        console.log(res);
-        this.user = {};
+        this.$http.post('users.json', this.user)
+          .then(res => {
+            console.log(res)
+            this.user = {}
+          });
       }
     },
-    async getUsers() {
-      const res = await this.$http.get('users.json');
-
-      this.users = res.data;
+    getUsers() {
+      this.$http.get('users.json')
+        .then(res => {
+          this.users = res.data;
+        });
     }
   }
 }
