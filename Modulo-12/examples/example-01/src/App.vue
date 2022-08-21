@@ -44,8 +44,8 @@ export default {
     },
     getUsers() {
       this.$http.get('users.json')
-        .then(res => {
-          this.users = res.data;
+        .then(interceptData => {
+          this.users = interceptData;
         });
     }
   }
