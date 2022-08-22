@@ -14,14 +14,8 @@ Vue.use({
             }
         });
         Vue.prototype.$http.interceptors.request.use(config => {
-            console.log(config)
-
             return config;
         });
-        Vue.prototype.$http.interceptors.response.use(res => {
-            console.log(res.data);
-
-            return res.data;
-        });
+        Vue.prototype.$http.interceptors.response.use(res => res.data);
     }
 })
