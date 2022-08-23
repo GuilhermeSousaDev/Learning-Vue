@@ -2,6 +2,12 @@
   <div id="app">
     <h1>Vue http</h1>
 
+    <div v-for="message in messages" :key="message.text">
+      <span :class="message.type">
+        {{ message.text }}
+      </span>
+    </div>
+
     <div>
       <input type="text" placeholder="name" v-model="user.name">
       <input type="text" placeholder="email" v-model="user.email">
@@ -33,35 +39,65 @@ export default {
         email: ''
       },
       users: [],
+      messages: [],
       isUpdate: false,
       selectedId: null
     }
   },
   methods: {
+    clear() {
+      this.user = {};
+      this.messages = [];
+    },
+    success() {
+      this.messages.push({
+        text: 'Operation realizated with success',
+        type: 'success'
+      });
+    },
+    danger() {
+      this.messages.push({
+        text: 'Error for Delete User',
+        type: 'danger'
+      });
+    },
     createUser() {
       if (this.user.name && this.user.email) {
         this.$http.post('users.json', this.user)
-          .then(_ => this.user = {});
+          .then(_ => {
+            this.clear();
+            this.success();
+          });
       }
     },
     getUsers() {
       this.$http.get('users.json')
         .then(interceptData => {
+          this.clear();
           this.users = interceptData;
         });
     },
     deleteUser(id) {
-      this.$http.delete(`users/${id}.json`);
+      this.$http.delete(`users/${id}`)
+        .then(_ => {
+          this.clear();
+          this.success();
+        })
+        .catch(_ => this.danger());
     },
     updateUser() {
       if (this.user.name && this.user.email) {
         this.$http.put(`users/${this.selectedId}.json`, this.user)
-          .then(_ => this.user = {});
+          .then(_ => {
+            this.clear();
+            this.success();
+          })
+          .catch(_ => this.danger());
       }
     },
     showUser(id) {
-      this.user = { ...this.users[id] };   
-      this.isUpdate = true;   
+      this.user = { ...this.users[id] };
+      this.isUpdate = true;
       this.selectedId = id;
     }
   }
@@ -77,5 +113,17 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.success {
+  background: green;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.danger {
+  background: 'red';
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 </style>
