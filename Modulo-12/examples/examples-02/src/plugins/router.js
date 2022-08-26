@@ -5,15 +5,18 @@ import User from '../components/User';
 
 Vue.use(VueRouter);
 
+const routes = [
+    {
+        path: '/',
+        component: Home,
+    },
+    {
+        path: '/user',
+        component: User,
+    }
+];
+
 export default new VueRouter({
-    routes: [
-        {
-            path: '/',
-            component: Home,
-        },
-        {
-            path: '/user',
-            component: User,
-        }
-    ]
+    mode: 'history',
+    routes,
 });
