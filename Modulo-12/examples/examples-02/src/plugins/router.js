@@ -13,7 +13,7 @@ const routes = [
     {
         path: '/user',
         component: User,
-    }
+    },
 ];
 
 export default new VueRouter({
