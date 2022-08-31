@@ -7,16 +7,6 @@
 
 <script>
     export default {
-        name: 'User',
-        watch: {
-            $route(to, from) {
-                this.id = to.params.id;
-            }
-        },
-        methods: {
-            backToHome() {
-                this.$router.push('/');
-            }
-        }
+        name: 'User'
     }
 </script>
