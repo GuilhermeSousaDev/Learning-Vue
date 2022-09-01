@@ -20,7 +20,8 @@ const routes = [
         children: [
             { path: '', component: UserList },
             { path: ':id', component: UserDetails, props: true },
-            { path: ':id/edit', component: UserEdit, props: true }
+            { path: ':id/edit', component: UserEdit, props: true,
+                name: 'editUser' }
         ]
     },
 ];
