@@ -12,7 +12,6 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '/',
-        //component: Home,
         components: {
             default: Home,
             menu: Menu
@@ -29,6 +28,14 @@ const routes = [
                 name: 'editUser' }
         ]
     },
+    {
+        path: '/redirect',
+        redirect: '/user'
+    },
+    {
+        path: '*',
+        redirect: '/'
+    }
 ];
 
 export default new VueRouter({
