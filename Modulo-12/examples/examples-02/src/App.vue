@@ -1,7 +1,14 @@
 <template>
   <div id="app">
     <Menu />
-    <router-view />
+
+    <transition
+      mode="out-in"
+      enter-active-class="animated rubberBand"
+      leave-active-class="animated rollOut"
+    >
+      <router-view />
+    </transition>
   </div>
 </template>
 
