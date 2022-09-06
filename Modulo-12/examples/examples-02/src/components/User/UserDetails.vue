@@ -8,7 +8,8 @@
             :to="{ 
                 name: 'editUser', 
                 params: { id }, 
-                query: { completed: true, lang: 'pt-br' } 
+                query: { completed: true, lang: 'pt-br' } ,
+                hash: '#rodape'
             }"
         >
             Edit

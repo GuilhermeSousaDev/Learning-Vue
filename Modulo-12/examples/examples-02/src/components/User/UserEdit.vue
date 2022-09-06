@@ -4,7 +4,12 @@
 
         <p><strong>ID: </strong> {{ id }} </p>
         <p><strong>Complet: </strong> {{ $route.query.completed? 'Yes' : 'No' }} </p>
-        <p><strong>Language</strong> {{ $route.query.lang }} </p>
+        <p><strong>Language</strong> {{ $route.query.lang }} </p> 
+        <hr>
+        <button>Confirmar</button>
+        <div class="rodape">
+            <h1>Rodapé</h1>
+        </div>
     </div>
 </template>
 
@@ -14,3 +19,9 @@
         props: ['id']
     }
 </script>
+
+<style>
+    .rodape {
+        margin-top: 1000px;
+    }
+</style>
