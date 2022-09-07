@@ -40,5 +40,10 @@ const routes = [
 
 export default new VueRouter({
     mode: 'history',
+    scrollBehavior (to) {
+        if (to.hash) {
+            return { selector: to.hash }
+        }
+    },
     routes,
 });
