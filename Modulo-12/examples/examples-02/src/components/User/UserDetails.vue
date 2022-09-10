@@ -24,6 +24,13 @@
             return {
                 id: this.$route.params.id,
             }
+        },
+        beforeRouteEnter(to, from, next) {
+            console.log(to.path);
+
+            const auth = true;
+
+            auth ? next() : next(false);
         }
     }
 </script>

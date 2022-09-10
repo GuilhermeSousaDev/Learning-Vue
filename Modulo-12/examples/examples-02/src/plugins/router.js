@@ -38,7 +38,7 @@ const routes = [
     }
 ];
 
-export default new VueRouter({
+const vueRouter = new VueRouter({
     mode: 'history',
     scrollBehavior (to) {
         if (to.hash) {
@@ -47,3 +47,10 @@ export default new VueRouter({
     },
     routes,
 });
+
+vueRouter.beforeEach((to, from, next) => {
+    console.log('before route');
+    next();
+});
+
+export default vueRouter;
