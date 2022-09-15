@@ -6,5 +6,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         products: []
+    },
+    getters: {
+        totalValue(state) {
+            return state.products.map(p => p.quantidade * p.preco)
+                .reduce((total, atual) => total + atual, 0)        
+        }
     }
 })
