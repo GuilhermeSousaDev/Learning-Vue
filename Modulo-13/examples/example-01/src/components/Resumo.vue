@@ -16,11 +16,6 @@ export default {
         total: 'totalValue'
     }),
     // computed: mapGetters(['totalValue']),
-    // computed: {
-    //     total() {
-    //         return this.$store.getters.totalValue;
-    //     },
-    // },
 }
 </script>
 
