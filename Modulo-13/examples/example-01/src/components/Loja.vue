@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
     data() {
@@ -22,7 +22,7 @@ export default {
         }
     },
     methods: {
-        ...mapMutations(['addProduct']),
+        ...mapActions(['addProduct']),
         adicionar() {
             const produto = {
                 id: this.sequencia,
@@ -33,6 +33,7 @@ export default {
             this.sequencia++
 
             //this.$store.commit('addProduct', produto);
+            // this.$store.dispatch('addProduct', produto);
             this.addProduct(produto);
         }
     }
