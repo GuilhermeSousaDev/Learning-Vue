@@ -5,7 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        products: []
+        products: [],
+        quantity: 0,
+        price: 0
     },
     getters: {
         totalValue(state) {
@@ -16,6 +18,12 @@ export default new Vuex.Store({
     mutations: {
         addProduct(state, payload) {
             state.products.push(payload);
+        },
+        setQuantity(state, payload) {
+            state.quantity = payload;
+        },
+        setPrice(state, payload) {
+            state.price = payload;
         }
     },
     actions: {
@@ -23,6 +31,12 @@ export default new Vuex.Store({
             setTimeout(() => {
                 commit('addProduct', payload);
             }, 1000);
+        },
+        setQuantity({ commit }, payload) {
+            commit('setQuantity', payload);
+        },
+        setPrice({ commit }, payload) {
+            commit('setPrice', payload);
         }
     }
 })

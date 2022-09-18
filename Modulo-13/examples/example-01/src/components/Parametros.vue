@@ -15,10 +15,22 @@
 
 <script>
 export default {
-    data() {
-        return {
-            quantidade: 0,
-            preco: 0
+    computed: {
+        quantidade: {
+            get() {
+                return this.$store.state.quantity;
+            },
+            set(value) {
+                return this.$store.dispatch('setQuantity', value);
+            }
+        },
+        preco: {
+            get() {
+                return this.$store.state.price;
+            },
+            set(value) {
+                return this.$store.dispatch('setPrice', value);
+            }
         }
     }
 }
