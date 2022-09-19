@@ -32,11 +32,5 @@ export default new Vuex.Store({
                 commit('addProduct', payload);
             }, 1000);
         },
-        setQuantity({ commit }, payload) {
-            commit('setQuantity', payload);
-        },
-        setPrice({ commit }, payload) {
-            commit('setPrice', payload);
-        }
     }
 })

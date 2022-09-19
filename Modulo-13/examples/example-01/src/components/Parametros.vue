@@ -21,7 +21,7 @@ export default {
                 return this.$store.state.quantity;
             },
             set(value) {
-                return this.$store.dispatch('setQuantity', value);
+                return this.$store.commit('setQuantity', value);
             }
         },
         preco: {
@@ -29,7 +29,7 @@ export default {
                 return this.$store.state.price;
             },
             set(value) {
-                return this.$store.dispatch('setPrice', value);
+                return this.$store.commit('setPrice', value);
             }
         }
     }
