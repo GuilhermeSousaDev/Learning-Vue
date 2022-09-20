@@ -32,7 +32,7 @@ export default {
             return this.$store.getters.totalValue;
         },
         produtos() {
-            return this.$store.state.products;
+            return this.$store.state.car.products;
         }
     },
 }

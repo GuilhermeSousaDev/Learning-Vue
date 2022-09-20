@@ -21,10 +21,10 @@ export default {
     },
     computed: {
         quantidade() {
-            return this.$store.state.quantity;
+            return this.$store.state.params.quantity;
         },
         preco() {
-            return this.$store.state.price;
+            return this.$store.state.params.price;
         }
     },
     methods: {
