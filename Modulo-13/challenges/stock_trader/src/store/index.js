@@ -34,7 +34,16 @@ export default new Vuex.Store({
   },
   mutations: {
     buyAction(state, payload) {
-      state.actions.push(payload);
+      state.bought_actions.push(payload);
+    },
+    sellAction(state, payload) {
+      const action = state.bought_actions.filter(action => action.id === payload.id);
+
+      if (payload.quantity === 0) {
+        state.bought_actions = state.bought_actions.filter(action => action.id !== payload.id);
+      } else {
+        state.bought_actions.push();
+      }
     }
   },
   actions: {
