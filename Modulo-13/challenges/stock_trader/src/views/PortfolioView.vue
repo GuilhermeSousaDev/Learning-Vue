@@ -27,7 +27,7 @@ export default {
     },
     methods: {
         sellAction(action) {
-            if (this.quantity_actions <= 0) return;
+            if (this.quantity_actions < 0) return;
 
             if (this.quantity_actions > action.quantity) return;
 
@@ -37,7 +37,11 @@ export default {
                 selled_actions: this.quantity_actions,
             }
 
-            return this.$store.dispatch('sellAction', payload);
+            const cashPayload = action.price * this.quantity_actions;
+
+            this.$store.commit('updateCash', cashPayload);
+
+            this.$store.dispatch('sellAction', payload);
         }
     },
     computed: {

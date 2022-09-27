@@ -40,6 +40,9 @@ export default new Vuex.Store({
     sellAction(state, payload) {
       state.bought_actions = payload;
     },
+    updateCash(state, payload) {
+      state.cash += payload;
+    }
   },
   actions: {
     sellAction({ state, commit }, payload) {
@@ -49,7 +52,7 @@ export default new Vuex.Store({
 
       state.bought_actions.map(action => {
         if (action.id === payload.id) {
-          action.quantity -= payload.selled_actions;
+          action.quantity -= payload.selled_actions; 
         }
       });
 
