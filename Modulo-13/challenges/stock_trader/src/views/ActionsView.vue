@@ -33,6 +33,8 @@ export default {
             }
 
             if (this.quantity_actions <= 0) return;
+
+            if (this.quantity_actions * action.price > this.$store.state.cash) return;
             
             return this.$store.commit('buyAction', payload);
         }

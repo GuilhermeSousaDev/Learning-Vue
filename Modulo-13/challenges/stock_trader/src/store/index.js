@@ -35,18 +35,26 @@ export default new Vuex.Store({
   mutations: {
     buyAction(state, payload) {
       state.bought_actions.push(payload);
+      state.cash -= payload.price * payload.quantity;
     },
     sellAction(state, payload) {
-      const action = state.bought_actions.filter(action => action.id === payload.id);
-
-      if (payload.quantity === 0) {
-        state.bought_actions = state.bought_actions.filter(action => action.id !== payload.id);
-      } else {
-        state.bought_actions.push();
-      }
-    }
+      state.bought_actions = payload;
+    },
   },
   actions: {
+    sellAction({ state, commit }, payload) {
+      if (payload.quantity === 0) {
+        state.bought_actions = state.bought_actions.filter(action => action.id !== payload.id);
+      }
+
+      state.bought_actions.map(action => {
+        if (action.id === payload.id) {
+          action.quantity -= payload.selled_actions;
+        }
+      });
+
+      commit('sellAction', state.bought_actions);
+    }
   },
   modules: {
   }

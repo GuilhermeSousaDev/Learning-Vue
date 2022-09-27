@@ -34,9 +34,10 @@ export default {
             const payload = {
                 ...action,
                 quantity: action.quantity - this.quantity_actions,
+                selled_actions: this.quantity_actions,
             }
 
-            return this.$store.commit('sellAction', payload);
+            return this.$store.dispatch('sellAction', payload);
         }
     },
     computed: {
