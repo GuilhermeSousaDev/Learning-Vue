@@ -7,9 +7,9 @@
             <router-link to="/actions">Actions</router-link >
         </div>
         <div class="right-side">
-            <strong>Finish Day</strong>
+            <strong @click="$store.dispatch('changeActionCashValue');">Finish Day</strong>
             <strong>Save & Load</strong>
-            <strong>Seu Saldo: {{ cash | money }}</strong>
+            <strong>Cash: {{ cash | money }}</strong>
         </div>
     </nav>
 </template>
@@ -23,7 +23,7 @@ export default {
         },
         cash() {
             return this.$store.state.cash;
-        }
+        },
     }
 }
 </script>
@@ -43,5 +43,6 @@ export default {
     }
     .right-side strong {
         margin: 12px;
+        cursor: pointer;
     }
 </style>

@@ -1,7 +1,13 @@
 <template>
   <div id="app">
     <Navbar />
-    <router-view/>
+    <transition
+      mode="out-in"
+      enter-active-class="route-enter"
+      leave-active-class="route-leave"
+    >
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -20,6 +26,33 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+@keyframes routeEnter {
+  from {
+    transform: translateY(70px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+
+@keyframes routeLeave {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(70px);
+  }
+}
+
+.route-enter {
+ animation: routeEnter 0.5s;
+}
+
+.route-leave {
+ animation: routeLeave 0.5s;
 }
 
 nav a {

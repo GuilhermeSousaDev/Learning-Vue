@@ -1,6 +1,6 @@
 <template>
     <div class="actions">
-        <div v-for="action in actions" class="action">
+        <div v-for="(action, i) in actions" class="action">
             <div class="action-info">
                 <span>{{ action.name }}</span> 
                 <span>( Price: {{ action.price | money }} )</span>
@@ -11,7 +11,7 @@
                     value="0"
                     @change="e => quantity_actions = Number(e.target.value)" 
                 />
-                <button @click="buyAction(action)">Buy</button>
+                <button @click="buyAction(action, i)">Buy</button>
             </div>
         </div>
     </div>
@@ -26,17 +26,18 @@ export default {
         }
     },
     methods: {
-        buyAction(action) {
+        buyAction(action, i) {
             const payload = {
                 ...action,
                 quantity: this.quantity_actions,
+                index: i,
             }
 
             if (this.quantity_actions <= 0) return;
 
             if (this.quantity_actions * action.price > this.$store.state.cash) return;
             
-            return this.$store.commit('buyAction', payload);
+            return this.$store.dispatch('buyAction', payload);
         }
     },
     computed: {

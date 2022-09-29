@@ -1,5 +1,5 @@
 <template>
-    <div class="bought_actions">
+    <div class="bought_actions" v-if="actions.length">
         <div v-for="action in actions" class="bought_action">
             <div class="bought_action-info">
                 <span>{{ action.name }}</span> 
@@ -14,6 +14,10 @@
                 <button @click="sellAction(action)">Sell</button>
             </div>
         </div>
+    </div>
+    <div class="no_actions" v-else>
+        <span>No Actions in Portfolio</span>
+        <router-link to="/actions">Buy Actions Here!</router-link>
     </div>
 </template>
 
@@ -46,13 +50,31 @@ export default {
     },
     computed: {
         actions() {
-            return this.$store.state.bought_actions;
+            return this.$store.getters.bought_actions;
         }
     }
 }
 </script>
 
 <style>
+.no_actions {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 540px
+}
+.no_actions a {
+    margin-top: 30px;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    color: black;
+}
+.no_actions a:hover {
+    background: #42b983;
+}
 .bought_actions {
     display: flex;
     justify-content: center;
