@@ -5,6 +5,8 @@ import store from './store';
 
 Vue.config.productionTip = false;
 
+import './plugins/axios';
+
 Vue.filter('money', valor => {
 	return `R$ ${parseFloat(valor).toFixed(2)}`.replace('.', ',')
 })
