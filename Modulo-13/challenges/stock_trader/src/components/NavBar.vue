@@ -10,8 +10,8 @@
             <strong @click="$store.dispatch('changeActionCashValue')">Finish Day</strong>
             <strong @click="showInfo = showInfo? false : true">Save & Load</strong>
             <div id="save-load-info" v-if="showInfo">
-                <span>Save</span> <br> <br>
-                <span>Load</span>
+                <span @click="saveDataInDatabase()">Save Data</span> <br> <br>
+                <span @click="loadDatabaseData()">Load Data</span>
             </div>
             <strong>Cash: {{ cash | money }}</strong>
         </div>
@@ -24,6 +24,27 @@ export default {
     data() {
         return {
             showInfo: false,
+            stocks: []
+        }
+    },
+    methods: {
+        async loadDatabaseData() {
+            console.log(this.stocks);
+        },
+        async saveDataInDatabase() {
+            const data = {
+                cash: this.$store.state.cash,
+                stockPortfolio: this.$store.getters.bought_actions,
+                stocks: this.$store.state.actions
+            }
+
+            const stocks = await this.$http.get('stock.json');
+
+            if (stocks) {
+                await this.$http.put('stock.json', data);
+            }
+
+            await this.$http.post('stock.json', data);
         }
     },
     computed: {
