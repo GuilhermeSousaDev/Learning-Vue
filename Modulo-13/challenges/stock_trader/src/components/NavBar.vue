@@ -29,7 +29,9 @@ export default {
     },
     methods: {
         async loadDatabaseData() {
-            console.log(this.stocks);
+            const payload = await this.$http.get('stock.json').data;
+
+            this.$store.commit('getDatabaseInfo', payload);
         },
         async saveDataInDatabase() {
             const data = {

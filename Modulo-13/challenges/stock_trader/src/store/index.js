@@ -43,6 +43,10 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    getDatabaseInfo(state, payload) {
+      state.actions = payload.stocks;
+      state.cash = payload.cash;
+    },
     buyAction(state, payload) {
       state.actions = payload.actions;
       state.cash -= payload.selectedAction.price * payload.selectedAction.quantity;
@@ -55,7 +59,7 @@ export default new Vuex.Store({
     },
     updateCash(state, payload) {
       state.cash += payload;
-    }
+    },
   },
   actions: {
     buyAction({ state, commit }, payload) {
