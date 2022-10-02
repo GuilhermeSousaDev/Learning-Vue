@@ -29,15 +29,15 @@ export default {
     },
     methods: {
         async loadDatabaseData() {
-            const payload = await this.$http.get('stock.json').data;
+            const payload = await this.$http.get('stock.json');
 
-            this.$store.commit('getDatabaseInfo', payload);
+            this.$store.commit('getDatabaseInfo', payload.data);
         },
         async saveDataInDatabase() {
             const data = {
                 cash: this.$store.state.cash,
                 stockPortfolio: this.$store.getters.bought_actions,
-                stocks: this.$store.state.actions
+                stocks: this.$store.state.actions,
             }
 
             const stocks = await this.$http.get('stock.json');

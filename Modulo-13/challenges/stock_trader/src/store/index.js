@@ -75,7 +75,11 @@ export default new Vuex.Store({
     },
     sellAction({ state, commit }, payload) {
       if (payload.quantity === 0) {
-        state.actions = state.actions.filter(action => action.id !== payload.id);
+        state.actions.map(action => {
+          if (action.id === payload.id) {
+            action.purchased = false;
+          }
+        });
       }
 
       state.actions.map(action => {
