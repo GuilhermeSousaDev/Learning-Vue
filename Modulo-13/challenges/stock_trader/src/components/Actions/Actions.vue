@@ -1,19 +1,17 @@
 <template>
     <div class="actions">
         <div v-for="(action, i) in actions" class="action">
-            <Action :action="action" />
-            <BuyAction :action="action" :index="i" />
+            <Action :action="action" :index="i" />
         </div>
     </div>
 </template>
 
 <script>
 import Action from './Action.vue';
-import BuyAction from './BuyAction.vue';
 
 export default {
     name: 'Actions',
-    components: { Action, BuyAction },
+    components: { Action },
     computed: {
         actions() {
             return this.$store.state.actions;
