@@ -10,7 +10,12 @@
                 :value="quantity_actions"
                 @change="e => quantity_actions = e.target.value" 
             />
-            <button @click="buyAction(action, index)">Buy</button>
+            <button 
+                :disabled="isInvalidBuy" 
+                @click="buyAction(action, index)"
+            >
+                Buy
+            </button>
         </div>
     </div>
 </template>
@@ -32,14 +37,16 @@ export default {
                 index,
             }
 
-            if (this.quantity_actions <= 0) return;
-
-            if (this.quantity_actions * action.price > this.$store.state.cash) return;
-
             this.$store.dispatch('buyAction', payload);
             this.quantity_actions = 0;
         }
     },
+    computed: {
+        isInvalidBuy() {
+            return this.quantity_actions * this.action.price > this.$store.state.cash 
+            || this.quantity_actions <= 0;
+        }
+    }
 }
 </script>
 

@@ -6,7 +6,12 @@
         </div>
         <div class="buy-bought_action">
             <input type="number" :value="quantity_actions" @change="e => quantity_actions = e.target.value" />
-            <button @click="sellAction(action)">Sell</button>
+            <button 
+                @click="sellAction()"
+                :disabled="isInvalidSell"
+            >
+            Sell
+            </button>
         </div>
     </div>
 </template>
@@ -21,18 +26,14 @@ export default {
         }
     },
     methods: {
-        sellAction(action) {
-            if (this.quantity_actions < 0) return;
-
-            if (this.quantity_actions > action.quantity) return;
-
+        sellAction() {
             const payload = {
-                ...action,
-                quantity: action.quantity - this.quantity_actions,
+                ...this.action,
+                quantity: this.action.quantity - this.quantity_actions,
                 selled_actions: this.quantity_actions,
             }
 
-            const cashPayload = action.price * this.quantity_actions;
+            const cashPayload = this.action.price * this.quantity_actions;
 
             this.$store.commit('updateCash', cashPayload);
             
@@ -41,6 +42,12 @@ export default {
             this.quantity_actions = 0;
         }
     },
+    computed: {
+        isInvalidSell() {
+            return this.quantity_actions > this.action.quantity 
+            || this.quantity_actions <= 0; 
+        }
+    }
 }
 </script>
 
