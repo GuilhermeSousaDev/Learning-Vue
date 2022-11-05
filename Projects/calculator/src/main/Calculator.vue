@@ -1,23 +1,23 @@
 <template>
   <div class="calculator">
     <Display value="1000" />
-    <Button label="AC" triple />
-    <Button label="/" operation />
-    <Button label="7" />
-    <Button label="8" />
-    <Button label="9" />
-    <Button label="*" operation />
-    <Button label="4" />
-    <Button label="5" />
-    <Button label="6" />
-    <Button label="-" operation />
-    <Button label="1" />
-    <Button label="2" />
-    <Button label="3" />
-    <Button label="+" operation />
-    <Button label="0" double />
+    <Button label="AC" triple @onCalcButtonClick="clearMemory" />
+    <Button label="/" operation @onCalcButtonClick="setOperation" />
+    <Button label="7" @onCalcButtonClick="addDigit" />
+    <Button label="8" @onCalcButtonClick="addDigit" />
+    <Button label="9" @onCalcButtonClick="addDigit" />
+    <Button label="*" operation @onCalcButtonClick="setOperation" />
+    <Button label="4" @onCalcButtonClick="addDigit" />
+    <Button label="5" @onCalcButtonClick="addDigit" />
+    <Button label="6" @onCalcButtonClick="addDigit" />
+    <Button label="-" operation @onCalcButtonClick="setOperation" />
+    <Button label="1" @onCalcButtonClick="addDigit" />
+    <Button label="2" @onCalcButtonClick="addDigit" />
+    <Button label="3" @onCalcButtonClick="addDigit" />
+    <Button label="+" operation @onCalcButtonClick="setOperation" />
+    <Button label="0" double @onCalcButtonClick="addDigit" />
     <Button label="." />
-    <Button label="=" operation />
+    <Button label="=" operation @onCalcButtonClick="setOperation" />
   </div>
 
 </template>
@@ -28,7 +28,18 @@ import Display from '../components/Display.vue';
 
 export default {
     name: 'Calculator',
-    components: { Button, Display }
+    components: { Button, Display },
+    methods: {
+    clearMemory() {
+      console.log('Clear Memory')
+    },
+    setOperation(operation) {
+      console.log(operation);
+    },
+    addDigit(n) {
+      console.log(n);
+    }
+  }
 }
 </script>
 

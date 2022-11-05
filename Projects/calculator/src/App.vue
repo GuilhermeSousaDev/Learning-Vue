@@ -10,7 +10,7 @@ import Calculator from './main/Calculator.vue';
 
 export default {
   name: 'App',
-  components: { Calculator }
+  components: { Calculator },
 }
 </script>
 
