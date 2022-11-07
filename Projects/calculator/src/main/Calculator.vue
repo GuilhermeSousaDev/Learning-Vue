@@ -1,6 +1,6 @@
 <template>
   <div class="calculator">
-    <Display value="1000" />
+    <Display :value="displayValue" />
     <Button label="AC" triple @onCalcButtonClick="clearMemory" />
     <Button label="/" operation @onCalcButtonClick="setOperation" />
     <Button label="7" @onCalcButtonClick="addDigit" />
@@ -16,7 +16,7 @@
     <Button label="3" @onCalcButtonClick="addDigit" />
     <Button label="+" operation @onCalcButtonClick="setOperation" />
     <Button label="0" double @onCalcButtonClick="addDigit" />
-    <Button label="." />
+    <Button label="." @onCalcButtonClick="addDigit" />
     <Button label="=" operation @onCalcButtonClick="setOperation" />
   </div>
 
@@ -28,16 +28,40 @@ import Display from '../components/Display.vue';
 
 export default {
     name: 'Calculator',
+    data() {
+      return {
+        displayValue: '0',
+        clearDisplay: false,
+        operation: null,
+        values: [0, 0],
+        current: 0
+      }
+    },
     components: { Button, Display },
     methods: {
     clearMemory() {
-      console.log('Clear Memory')
+      Object.assign(this.$data, this.$options.data());
     },
     setOperation(operation) {
       console.log(operation);
     },
     addDigit(n) {
-      console.log(n);
+      if (n === '.' && this.displayValue.includes('.')) {
+        return;
+      }
+      
+      const clearDisplay = this.displayValue === '0' || this.clearDisplay;
+      const currentValue = clearDisplay ? "" : this.displayValue;
+      const displayValue = currentValue + n;
+
+      this.displayValue = displayValue;
+      this.clearDisplay = false;
+
+      if (n !== '.') {
+        const i = this.current;
+        const newValue = parseFloat(displayValue);
+        this.values[i] = newValue;
+      }
     }
   }
 }
