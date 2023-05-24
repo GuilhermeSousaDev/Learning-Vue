@@ -9,7 +9,7 @@ Vue.use({
             baseURL: 'https://vuecourse-da17e-default-rtdb.firebaseio.com/',
             headers: {
                 get: {
-                    'Authorization': 'abcd'
+                    'Authorization': ''
                 }
             }
         });
